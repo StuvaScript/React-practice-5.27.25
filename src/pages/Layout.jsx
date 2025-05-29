@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
+const links = [
+  { name: "Home", path: "/", id: 1 },
+  { name: "Blogs", path: "/blogs", id: 2 },
+  { name: "Contact", path: "/contact", id: 3 },
+  { name: "Challenges", path: "/challenges", id: 4 },
+];
+
 export default function Layout() {
   const [inputs, setInputs] = useState({});
 
@@ -17,18 +24,14 @@ export default function Layout() {
     <>
       <nav>
         <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/blogs">Blogs</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact</Link>
-          </li>
+          {links.map((link) => (
+            <li key={link.id}>
+              <Link to={link.path}>{link.name}</Link>
+            </li>
+          ))}
         </ul>
       </nav>
-
+      <br />
       <form onSubmit={handleSubmit}>
         <label htmlFor="username">Enter your name:</label>
         <input
