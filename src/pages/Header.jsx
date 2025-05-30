@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { BooleanContext } from "../context/BooleanContext";
 
 const links = [
   { name: "Home", path: "/", id: 1 },
@@ -10,10 +11,16 @@ const links = [
 
 export default function Header({ activeUser }) {
   const [inputs, setInputs] = useState({});
+  const { boolean } = useContext(BooleanContext);
+  const { setBoolean } = useContext(BooleanContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setInputs((values) => ({ ...values, [name]: value }));
+  };
+
+  const handleClick = () => {
+    setBoolean((value) => !value);
   };
 
   const handleSubmit = (e) => {
@@ -54,6 +61,8 @@ export default function Header({ activeUser }) {
         <br />
         <button type="submit">Submit</button>
       </form>
+      <br />
+      <button onClick={handleClick}>Boolean: {`${boolean}`}</button>
     </>
   );
 }

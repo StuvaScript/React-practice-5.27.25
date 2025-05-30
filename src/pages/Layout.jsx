@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import Header from "./Header";
 import { useState } from "react";
 
-export default function Layout() {
+export function Layout() {
   const [activeUser, setActiveUser] = useState("stranger");
 
   return (
