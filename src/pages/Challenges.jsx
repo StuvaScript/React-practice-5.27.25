@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useOutletContext } from "react-router-dom";
 
 const guitars = [
   { name: "Ibanez", id: 1 },
@@ -8,6 +9,7 @@ const guitars = [
 ];
 
 export default function Challenges() {
+  const { activeUser } = useOutletContext();
   const [guitar, setGuitar] = useState("Gibson");
 
   const handleChange = (e) => {
@@ -16,7 +18,7 @@ export default function Challenges() {
 
   return (
     <>
-      <h1>Challenges</h1>
+      <h1>{`Challenges for ${activeUser}`}</h1>
       <br />
       <form>
         <label htmlFor="guitars">Pick your favorite guitar: </label>

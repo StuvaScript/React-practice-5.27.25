@@ -1,16 +1,4 @@
-const contacts = (
-  <ul>
-    <li key={1} className="contact">
-      Katie
-    </li>
-    <li key={2} className="contact">
-      Karli
-    </li>
-    <li key={3} className="contact">
-      Jackie
-    </li>
-  </ul>
-);
+import { useOutletContext } from "react-router-dom";
 
 const moreContacts = [
   { name: "Dan", id: 1 },
@@ -19,6 +7,24 @@ const moreContacts = [
 ];
 
 export default function Contact() {
+  const { setActiveUser } = useOutletContext();
+
+  const handleClick = (e) => setActiveUser(e.target.innerText);
+
+  const contacts = (
+    <ul>
+      <li key={1} className="contact" onClick={handleClick}>
+        Katie
+      </li>
+      <li key={2} className="contact" onClick={handleClick}>
+        Karli
+      </li>
+      <li key={3} className="contact" onClick={handleClick}>
+        Jackie
+      </li>
+    </ul>
+  );
+
   const shoot = (a) => {
     alert(a);
   };
@@ -31,7 +37,7 @@ export default function Contact() {
       {contacts}
       <ul>
         {moreContacts.map((contact) => (
-          <li key={contact.id} className="contact">
+          <li key={contact.id} className="contact" onClick={handleClick}>
             {contact.name}!!!
           </li>
         ))}
